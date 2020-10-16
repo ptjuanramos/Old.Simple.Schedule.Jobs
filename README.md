@@ -15,4 +15,3 @@ await scheduleJob.Run(cancellationToken);
 .WithWorkers(...)
 ```
 TODO
-Accepts a IEnumerable of type IWorker 
