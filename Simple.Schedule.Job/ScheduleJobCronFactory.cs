@@ -9,30 +9,32 @@ namespace Simple.Schedule.Job
     {
         private static ScheduleJobCronFactory instance;
 
-        private readonly ScheduleJobOptions _scheduleJobOptions;
-
-        protected ScheduleJobCronFactory(ScheduleJobOptions scheduleJobOptions) 
+        private ScheduleJobCronFactory() 
         {
-            _scheduleJobOptions = scheduleJobOptions;
         }
 
-        public static ScheduleJobCronFactory GetInstance(ScheduleJobOptions scheduleJobOptions)
+        public static ScheduleJobCronFactory GetInstance()
         {
             if (instance == null)
-                instance = new ScheduleJobCronFactory(scheduleJobOptions);
+                instance = new ScheduleJobCronFactory();
 
             return instance;
         }
 
+        /// <summary>
+        /// Daily cron expression is the default value
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public string GetCronExpression(ScheduleJobType type)
         {
             return type switch
             {
-                ScheduleJobType.Daily => _scheduleJobOptions.CronExpression.Daily,
-                ScheduleJobType.Monthly => _scheduleJobOptions.CronExpression.Monthly,
-                ScheduleJobType.Weekly => _scheduleJobOptions.CronExpression.Weekly,
-                ScheduleJobType.Hourly => _scheduleJobOptions.CronExpression.Hourly,
-                _ => _scheduleJobOptions.CronExpression.Daily,
+                ScheduleJobType.Daily => CronExpression.Daily,
+                ScheduleJobType.Monthly => CronExpression.Monthly,
+                ScheduleJobType.Weekly => CronExpression.Weekly,
+                ScheduleJobType.Hourly => CronExpression.Hourly,
+                _ => CronExpression.Daily,
             };
         }
     }

@@ -1,11 +1,12 @@
 ﻿using Simple.Schedule.Job.Interfaces;
+using Simple.Schedule.Job.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Simple.Schedule.Job.Models
+namespace Simple.Schedule.Job
 {
     public class ScheduleJob
     {

@@ -1,10 +1,11 @@
 ﻿using Simple.Schedule.Job.Interfaces;
+using Simple.Schedule.Job.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Simple.Schedule.Job.Models
+namespace Simple.Schedule.Job
 {
     public class ScheduleJobBuilder
     {
@@ -34,7 +35,7 @@ namespace Simple.Schedule.Job.Models
             return this;
         }
 
-        public ScheduleJobBuilder WithScheduleOptions(ScheduleJobOptions scheduleJobOptions)
+        public ScheduleJobBuilder WithOptions(ScheduleJobOptions scheduleJobOptions)
         {
             this.scheduleJobOptions = scheduleJobOptions;
             return this;
@@ -44,9 +45,6 @@ namespace Simple.Schedule.Job.Models
         {
             if (scheduleJobOptions == null)
                 throw new ArgumentNullException(nameof(ScheduleJobOptions));
-
-            if(scheduleJobOptions.CronExpression == null)
-                throw new ArgumentNullException(nameof(ScheduleJobOptions.CronExpression));
         }
 
         private void SetDefaults()
@@ -54,8 +52,7 @@ namespace Simple.Schedule.Job.Models
             if (scheduleJobOptions.DelayTimeBetweenTasks == 0)
                 scheduleJobOptions.DelayTimeBetweenTasks = defaultBetweenDelayTime;
 
-            if (workers == null)
-                workers = Enumerable.Empty<IWorker>();
+            workers ??= Enumerable.Empty<IWorker>();
         }
 
         public ScheduleJob Build()

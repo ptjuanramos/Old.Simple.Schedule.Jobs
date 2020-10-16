@@ -31,7 +31,7 @@ namespace Simple.Schedule.Job
                 }
 
                 if(!cancellationToken.IsCancellationRequested)
-                    await Task.Delay(delayTime, cancellationToken); //TODO this is not advised to do a inner task that couldbreak when you se TRUE on cancellation token
+                    await Task.Delay(delayTime, cancellationToken); //TODO this is not advised to do a inner task that couldbreak when you have TRUE on cancellation token
 
             } while (!cancellationToken.IsCancellationRequested && !_scheduleJobOptions.IsDebug);
         }
@@ -45,18 +45,8 @@ namespace Simple.Schedule.Job
 
         private string GetCronExpression(ScheduleJobType scheduleJobType)
         {
-            if (_scheduleJobOptions == null)
-            {
-                throw new ArgumentNullException(nameof(ScheduleJobOptions));
-            }
-
-            if (_scheduleJobOptions.CronExpression == null)
-            {
-                throw new ArgumentNullException(nameof(CronExpression));
-            }
-
             return ScheduleJobCronFactory
-                .GetInstance(_scheduleJobOptions)
+                .GetInstance()
                 .GetCronExpression(scheduleJobType);
         }
     }

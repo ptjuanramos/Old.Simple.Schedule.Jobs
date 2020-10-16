@@ -19,7 +19,7 @@ namespace Simple.Schedule.Job.ConsoleApp
 
             ScheduleJob scheduleJob = new ScheduleJobBuilder()
                 .WithWorkers(DummyWorker())
-                .WithScheduleOptions(ScheduleJobOptions())
+                .WithOptions(ScheduleJobOptions())
                 .WithType(ScheduleJobType.Hourly)
                 .Build();
 
@@ -39,10 +39,6 @@ namespace Simple.Schedule.Job.ConsoleApp
         {
             return new ScheduleJobOptions
             {
-                CronExpression = new CronExpression
-                {
-                    Hourly = "0 * * * *" //TODO: this should be a const. Is not a choice to the user since that we use a specific library for this
-                },
                 DelayTimeBetweenTasks = 3000,
                 IsDebug = false
             };
