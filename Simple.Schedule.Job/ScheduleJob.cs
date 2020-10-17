@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Simple.Schedule.Job
 {
-    public class ScheduleJob
+    public sealed class ScheduleJob
     {
         private readonly IEnumerable<IWorker> _workers;
         private readonly ScheduleJobOptions _scheduleJobOptions;
