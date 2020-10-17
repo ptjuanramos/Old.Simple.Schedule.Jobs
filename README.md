@@ -3,7 +3,7 @@
 ```c#
 ScheduleJob scheduleJob = new ScheduleJobBuilder()
   .WithWorkers(...)
-  .WithScheduleOptions(...)
+  .WithOptions(...)
   .WithType(...)
   .Build();
   
