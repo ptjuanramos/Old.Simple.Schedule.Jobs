@@ -1,4 +1,6 @@
-# Simple.Schedule.Jobs
+# Simple.Schedule.Jobs 
+
+[![nuget](https://img.shields.io/nuget/v/Simple.Schedule.Job.svg)](https://www.nuget.org/packages/Simple.Schedule.Job/)
 
 Fluent library that helps you out creating a schedule job process that runs multiple code blocks.
 
