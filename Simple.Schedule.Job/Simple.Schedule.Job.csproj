@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Authors>Juan Ramos - ptjuanramos@gmail.com</Authors>
     <Version>0.5.0</Version>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Simple.Schedule.Job</RootNamespace>

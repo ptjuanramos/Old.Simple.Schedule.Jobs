@@ -3,19 +3,25 @@ using NCrontab;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Simple.Schedule.Job
 {
     internal class ScheduleJobRunner
     {
+        private readonly ScheduleRunnerContext _scheduleRunnerContext;
         private readonly ScheduleJobOptions _scheduleJobOptions;
         private readonly ScheduleJobType _scheduleJobType;
+        
         private DateTime nextRunDateTime;
 
         private bool HasReachedTimeToRun => DateTime.UtcNow > nextRunDateTime;
 
-        public ScheduleJobRunner(ScheduleJobOptions scheduleJobOptions, ScheduleJobType scheduleJobType)
+        public ScheduleJobRunner(ScheduleRunnerContext scheduleRunnerContext, 
+            ScheduleJobOptions scheduleJobOptions, 
+            ScheduleJobType scheduleJobType)
         {
+            _scheduleRunnerContext = scheduleRunnerContext;
             _scheduleJobOptions = scheduleJobOptions;
             _scheduleJobType = scheduleJobType;
         }
@@ -26,7 +32,11 @@ namespace Simple.Schedule.Job
             {
                 if (HasReachedTimeToRun || _scheduleJobOptions.IsDebug)
                 {
-                    await actionToRun.Invoke();
+                    await actionToRun
+                        .Invoke()
+                        .ContinueWith(null,TaskContinuationOptions.OnlyOnRanToCompletion)
+                        .ContinueWith(FaultedTaskHandler, TaskContinuationOptions.OnlyOnFaulted);
+
                     nextRunDateTime = GetNextOcurrenceDateTime(_scheduleJobType);
                 }
 
@@ -34,6 +44,14 @@ namespace Simple.Schedule.Job
                     await Task.Delay(delayTime, cancellationToken); //TODO this is not advised to do a inner task that couldbreak when you have TRUE on cancellation token
 
             } while (!cancellationToken.IsCancellationRequested && !_scheduleJobOptions.IsDebug);
+        }
+
+        private void FaultedTaskHandler(Task task)
+        {
+            if (_scheduleRunnerContext.Exceptions == null)
+                _scheduleRunnerContext.Exceptions = new List<Exception>();
+
+            _scheduleRunnerContext.Exceptions.Add(task.Exception);
         }
 
         private DateTime GetNextOcurrenceDateTime(ScheduleJobType scheduleJobType)

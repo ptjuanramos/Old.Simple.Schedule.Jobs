@@ -13,21 +13,22 @@ namespace Simple.Schedule.Job
         private readonly IEnumerable<IWorker> _workers;
         private readonly ScheduleJobOptions _scheduleJobOptions;
         private readonly ScheduleJobType _scheduleJobType;
-        private readonly Action<ScheduleJobResult> _callbackAction; //TODO
         private readonly ScheduleJobRunner _scheduleJobRunner;
+        private readonly ScheduleRunnerContext _scheduleRunnerContext;
 
+        public Action<ScheduleJobResult> ExceptionHandler;
+        public Action<ScheduleJobResult> CompletionHandler;
 
         internal ScheduleJob(IEnumerable<IWorker> workers,
             ScheduleJobType scheduleJobType,
-            ScheduleJobOptions scheduleJobOptions,
-            Action<ScheduleJobResult> callbackAction)
+            ScheduleJobOptions scheduleJobOptions)
         {
             _workers = workers;
             _scheduleJobOptions = scheduleJobOptions;
             _scheduleJobType = scheduleJobType;
-            _callbackAction = callbackAction;
+            _scheduleRunnerContext = new ScheduleRunnerContext();
 
-            _scheduleJobRunner = new ScheduleJobRunner(_scheduleJobOptions, _scheduleJobType);
+            _scheduleJobRunner = new ScheduleJobRunner(_scheduleRunnerContext, _scheduleJobOptions, _scheduleJobType);
         }
 
         public Task Run(CancellationToken cancellationToken)

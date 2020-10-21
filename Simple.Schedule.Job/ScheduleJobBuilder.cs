@@ -9,13 +9,9 @@ namespace Simple.Schedule.Job
 {
     public class ScheduleJobBuilder
     {
-        private const int defaultBetweenDelayTime = 3000;
-
-        private readonly int _betweenDelayTime;
         private IEnumerable<IWorker> workers;
         private ScheduleJobType scheduleJobType;
         private ScheduleJobOptions scheduleJobOptions;
-        private Action<ScheduleJobResult> callbackAction;
 
         public ScheduleJobBuilder WithWorkers(IEnumerable<IWorker> workers)
         {
@@ -26,12 +22,6 @@ namespace Simple.Schedule.Job
         public ScheduleJobBuilder WithType(ScheduleJobType scheduleJobType)
         {
             this.scheduleJobType = scheduleJobType;
-            return this;
-        }
-
-        public ScheduleJobBuilder WithCallback(Action<ScheduleJobResult> callbackAction)
-        {
-            this.callbackAction = callbackAction;
             return this;
         }
 
@@ -49,9 +39,6 @@ namespace Simple.Schedule.Job
 
         private void SetDefaults()
         {
-            if (scheduleJobOptions.DelayTimeBetweenTasks == 0)
-                scheduleJobOptions.DelayTimeBetweenTasks = defaultBetweenDelayTime;
-
             workers ??= Enumerable.Empty<IWorker>();
         }
 
@@ -62,8 +49,7 @@ namespace Simple.Schedule.Job
 
             return new ScheduleJob(workers, 
                 scheduleJobType, 
-                scheduleJobOptions,
-                callbackAction);
+                scheduleJobOptions);
         }
     }
 }

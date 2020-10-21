@@ -23,8 +23,16 @@ namespace Simple.Schedule.Job.ConsoleApp
                 .WithType(ScheduleJobType.Hourly)
                 .Build();
 
+            scheduleJob.ExceptionHandler = HandleHandlersOut;
+            scheduleJob.CompletionHandler = HandleHandlersOut;
+
             source.CancelAfter(5000); //Will stop after 5 seconds
             await scheduleJob.Run(cancellationToken);
+        }
+
+        private static void HandleHandlersOut(ScheduleJobResult result)
+        {
+            Console.WriteLine($"{result.ResultType} with {result.Message} message");
         }
 
         private static IEnumerable<IWorker> DummyWorker()
