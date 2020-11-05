@@ -52,7 +52,7 @@ namespace Simple.Schedule.Job
             if (scheduleJobOptions.DelayTimeBetweenTasks == 0)
                 scheduleJobOptions.DelayTimeBetweenTasks = defaultBetweenDelayTime;
 
-            workers ??= Enumerable.Empty<IWorker>();
+            workers = workers == null ? Enumerable.Empty<IWorker>() : workers;
         }
 
         public ScheduleJob Build()
