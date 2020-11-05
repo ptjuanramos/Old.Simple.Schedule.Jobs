@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.Schedule.Job", "Simple.Schedule.Job\Simple.Schedule.Job.csproj", "{AEED8EE6-7609-4554-B1CE-2B5A85DFB47D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Schedule.Job", "Simple.Schedule.Job\Simple.Schedule.Job.csproj", "{AEED8EE6-7609-4554-B1CE-2B5A85DFB47D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.Schedule.Job.ConsoleApp", "Simple.Schedule.Job.ConsoleApp\Simple.Schedule.Job.ConsoleApp.csproj", "{50B8154D-41AE-4F75-9C30-DF64A3F48288}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Schedule.Job.ConsoleApp", "Simple.Schedule.Job.ConsoleApp\Simple.Schedule.Job.ConsoleApp.csproj", "{50B8154D-41AE-4F75-9C30-DF64A3F48288}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Schedule.Job.Interfaces", "Simple.Schedule.Job.Interfaces\Simple.Schedule.Job.Interfaces.csproj", "{50EE67D2-42CC-408F-9747-282D045F4BB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{50B8154D-41AE-4F75-9C30-DF64A3F48288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50B8154D-41AE-4F75-9C30-DF64A3F48288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50B8154D-41AE-4F75-9C30-DF64A3F48288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50EE67D2-42CC-408F-9747-282D045F4BB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50EE67D2-42CC-408F-9747-282D045F4BB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50EE67D2-42CC-408F-9747-282D045F4BB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50EE67D2-42CC-408F-9747-282D045F4BB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
