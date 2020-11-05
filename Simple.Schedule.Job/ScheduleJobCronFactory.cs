@@ -28,14 +28,19 @@ namespace Simple.Schedule.Job
         /// <returns></returns>
         public string GetCronExpression(ScheduleJobType type)
         {
-            return type switch
+            switch(type)
             {
-                ScheduleJobType.Daily => CronExpression.Daily,
-                ScheduleJobType.Monthly => CronExpression.Monthly,
-                ScheduleJobType.Weekly => CronExpression.Weekly,
-                ScheduleJobType.Hourly => CronExpression.Hourly,
-                _ => CronExpression.Daily,
-            };
+                case ScheduleJobType.Daily:
+                    return CronExpression.Daily;
+                case ScheduleJobType.Monthly:
+                    return CronExpression.Monthly;
+                case ScheduleJobType.Weekly:
+                    return CronExpression.Weekly;
+                case ScheduleJobType.Hourly:
+                    return CronExpression.Hourly;
+                default:
+                    return CronExpression.Daily;
+            }
         }
     }
 }
