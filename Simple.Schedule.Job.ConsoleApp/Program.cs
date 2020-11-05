@@ -20,7 +20,7 @@ namespace Simple.Schedule.Job.ConsoleApp
             ScheduleJob scheduleJob = new ScheduleJobBuilder()
                 .WithWorkers(DummyWorker())
                 .WithOptions(ScheduleJobOptions())
-                .WithType(ScheduleJobType.Hourly)
+                .WithType(ScheduleJobType.Always)
                 .Build();
 
             source.CancelAfter(5000); //Will stop after 5 seconds
