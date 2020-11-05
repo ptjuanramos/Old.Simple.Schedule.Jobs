@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Juan Ramos - ptjuanramos@gmail.com</Authors>
+    <PackageDescription>Interface project for Simple.Schedule.Job</PackageDescription>
+  </PropertyGroup>
+
+</Project>
