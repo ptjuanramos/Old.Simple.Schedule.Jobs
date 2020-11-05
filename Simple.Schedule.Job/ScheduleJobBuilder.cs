@@ -12,6 +12,8 @@ namespace Simple.Schedule.Job
         private const int defaultBetweenDelayTime = 3000;
 
         private readonly int _betweenDelayTime;
+
+        private string customCronExpression;
         private IEnumerable<IWorker> workers;
         private ScheduleJobType scheduleJobType;
         private ScheduleJobOptions scheduleJobOptions;
@@ -55,6 +57,14 @@ namespace Simple.Schedule.Job
             workers ??= Enumerable.Empty<IWorker>();
         }
 
+        internal void SetCustomCronExpression(string cronExpression)
+        {
+            if (string.IsNullOrWhiteSpace(cronExpression))
+                throw new ArgumentException($"{nameof(cronExpression)} must be not null or white space");
+
+            customCronExpression = cronExpression;
+        }
+
         public ScheduleJob Build()
         {
             ValidateParameters();
@@ -64,6 +74,22 @@ namespace Simple.Schedule.Job
                 scheduleJobType, 
                 scheduleJobOptions,
                 callbackAction);
+        }
+    }
+
+    public sealed class ScheduleJobBuilderCustomCron
+    {
+        private readonly ScheduleJobBuilder scheduleJobBuilder;
+
+        ScheduleJobBuilderCustomCron(ScheduleJobBuilder scheduleJobBuilder)
+        {
+            this.scheduleJobBuilder = scheduleJobBuilder;
+        }
+
+        public ScheduleJobBuilder WithCronExpression(string cronExpression)
+        {
+            scheduleJobBuilder.SetCustomCronExpression(cronExpression);
+            return scheduleJobBuilder;
         }
     }
 }
