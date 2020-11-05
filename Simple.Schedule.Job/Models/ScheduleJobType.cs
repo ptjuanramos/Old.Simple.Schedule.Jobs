@@ -6,6 +6,7 @@ namespace Simple.Schedule.Job.Models
 {
     public enum ScheduleJobType
     {
+        Always,
         Daily,
         Hourly,
         Weekly,

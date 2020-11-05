@@ -44,6 +44,7 @@ ScheduleJobType.Daily
 ScheduleJobType.Hourly
 ScheduleJobType.Weekly
 ScheduleJobType.Montly
+ScheduleJobType.Always
 ```
 
 ## ScheduleJob Run method:

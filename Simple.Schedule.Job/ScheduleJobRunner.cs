@@ -38,6 +38,9 @@ namespace Simple.Schedule.Job
 
         private DateTime GetNextOcurrenceDateTime(ScheduleJobType scheduleJobType)
         {
+            if (scheduleJobType == ScheduleJobType.Always)
+                return DateTime.Now;
+
             string cronExpression = GetCronExpression(scheduleJobType);
             CrontabSchedule crontabSchedule = CrontabSchedule.Parse(cronExpression);
             return crontabSchedule.GetNextOccurrence(DateTime.UtcNow);
