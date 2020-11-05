@@ -4,6 +4,8 @@
     <Version>0.5.0</Version>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Simple.Schedule.Job</RootNamespace>
+    <Authors>Juan Ramos - ptjuanramos@gmail.com</Authors>
+    <PackageDescription>Simple way to implement a schedule job.</PackageDescription>
   </PropertyGroup>
 
   <ItemGroup>
